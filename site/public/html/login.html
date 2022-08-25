@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="icon" type="imagem/png" href="../assets/img/Logos/OFFBREACH.icon.png" />
+    <title>OffBreach</title>
+  </head>
+  <body>
+
+    <!-- Tela de Login -->
+  <div class="teste">
+    <div class="container">
+      <div class="formularioContainer">
+        <div class="login-cadastro">-
+          <form action="#" class="formularioLogin">
+            <a href="./index.html">
+            <img src="../assets/img/Logos/logo-offBreach.png" alt="" class="logoLogin">
+          </a>
+            <h2 class="title"></h2>
+            <!-- Div do input de usuario no Login-->
+            <div class="divInput">
+                <i class="fas fa-user"></i>
+              <input type="text" placeholder="Usuario" name="email" id="email_input">
+            </div>
+            <!-- Div do input da senha no Login-->
+            <div class="divInput">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Senha" name="senha" id="senha_input"> 
+            </div>
+            <button type="button" value="Login" class="btn solid" onclick="entrar()">LOGIN</button>           
+          </form>
+
+          <!-- Tela de cadastro-->
+          <form action="#" id="cadastro" class="formularioCadastro">
+            <a href="./index.html">
+              <img src="../assets/img/Logos/logo-offBreach.png" alt="" class="logoCadastro" >
+            </a>
+            <h2 class="title">Cadastrar</h2>
+            <!-- Div do input do nome do cadastro-->
+            <div class="divInput">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Nome" id="nome_input_cadastro">
+            </div>
+             <!-- Div do input do email do cadastro-->
+            <div class="divInput">
+              <i class="fas fa-envelope"></i>
+              <input type="email" placeholder="Email" id="email_input_cadastro">
+            </div>
+            <!-- Div do input da senha do cadastro-->
+            <div class="divInput">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Senha" id="confirmacao_senha_input">
+            </div>
+
+            <div class="divInput">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Confirme a senha" id="senha_input_cadastro">
+            </div>
+
+            <button type="button" class="btn solid" value="Cadastrar" id="senha_input" onclick="cadastrar()">Cadastrar</button>
+
+            <img class="loading" src="../assets/img/Logos/Loading.gif" alt="">
+
+            
+          </form>
+        </div>
+      </div>
+    
+
+
+      <!-- Painel da esquerda da tela de login-->
+      <div class="painelContainer">
+        <div class="panel painelEsquerda">
+          <div class="content">
+            <h3>Você é novo por aqui ?</h3>
+            <p>
+             Se cadastre em nosso sistema pelo botão abaixo para começar
+             a usar nossos serviços!
+            </p>
+            <button class="btn transparent" id="btnCadastrar">
+              Cadastrar
+            </button>
+          </div>
+        </div>
+        <!-- Painel da direita da tela de cadastro-->
+        <div class="panel painelDireita">
+          <div class="content">
+            <h3>Já é um de nós ?</h3>
+            <p>
+              Faça o login em nosso site para ter acesso
+              a todos os serviços que disponibilizamos
+            </p>
+            <button class="btn transparent" id="btnLogin">
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+
+  </body>
+</html>
+
+<script>
+
+  // Animações de transição da tela de login e cadastro
+const btnLogin = document.querySelector("#btnLogin");
+const btnCadastrar = document.querySelector("#btnCadastrar");
+const container = document.querySelector(".container");
+
+btnCadastrar.addEventListener("click", () => {
+  container.classList.add("sign-up-mode");
+});
+
+btnLogin.addEventListener("click", () => {
+  container.classList.remove("sign-up-mode");
+});
+
+function entrar() {
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
+        if (emailVar == "" || senhaVar == "") {
+            window.alert("Preencha todos os campos para prosseguir!");
+            
+            return false;
+        }
+
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+            window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
+            
+            return false;
+        }
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "Dashboard/Dashboard.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function cadastrar() {
+
+var nomeVar = nome_input_cadastro.value;
+var emailVar = email_input_cadastro.value;
+var senhaVar = senha_input_cadastro.value;
+var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+
+    window.alert("Preencha todos os campos para prosseguir!");
+    if (nomeVar == "") {
+        console.log('nome está em branco')
+    }
+    if (emailVar == "") {
+        console.log('email está em branco')
+    }
+    if (senhaVar == "") {
+        console.log('senha está em branco')
+    }
+    if (confirmacaoSenhaVar == "") {
+        console.log('confirmacaoSenha está em branco')
+    }
+    return false;
+}
+
+if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+    window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
+    return false;
+}
+
+if (senhaVar != confirmacaoSenhaVar) {
+    window.alert("As senhas inseridas devem ser iguais para prosseguir!");
+    
+    return false;
+}
+
+fetch("/usuarios/cadastrar", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar
+    })
+}).then(function (resposta) {
+
+    console.log("resposta: ", resposta);
+
+    if (resposta.ok) {
+        window.alert("Cadastro realizado com sucesso!");
+        window.location = "login.html";
+    } else {
+        throw ("Houve um erro ao tentar realizar o cadastro!");
+    }
+}).catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+});
+
+return false;
+}
+
+</script>
