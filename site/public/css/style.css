@@ -399,7 +399,7 @@ img {
   max-width: 22%;
 }
 .col-md-3 {
-  position: relative;
+  position: static;
   width: 80vh;
   padding-right: 15px;
   padding-left: 15px;
