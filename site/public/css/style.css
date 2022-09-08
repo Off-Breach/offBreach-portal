@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
@@ -90,14 +91,17 @@ header ul li:hover:after {
   width: 15%;
   margin: 1em 0;
 }
+
 .logo img {
   height: auto;
   max-height: 85%;
   width: 90%;
 }
+
 #imgLogoIcone {
   display: none;
 }
+
 #arrowDrawer {
   display: none;
 }
@@ -107,6 +111,7 @@ header ul li:hover:after {
   text-transform: uppercase;
   letter-spacing: 4px;
 }
+
 .sep {
   color: #fff;
   font-weight: 700;
@@ -114,6 +119,7 @@ header ul li:hover:after {
   margin: 10px;
   cursor: none;
 }
+
 nav {
   position: fixed;
   display: flex;
@@ -122,12 +128,10 @@ nav {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   background: rgb(9, 80, 111);
-  background: linear-gradient(
-    265deg,
-    rgba(9, 80, 111, 1) 0%,
-    rgba(44, 120, 153, 1) 48%,
-    rgba(98, 182, 211, 1) 100%
-  );
+  background: linear-gradient(265deg,
+      rgba(9, 80, 111, 1) 0%,
+      rgba(44, 120, 153, 1) 48%,
+      rgba(98, 182, 211, 1) 100%);
   height: 14vh;
   margin-top: -14vh;
 }
@@ -213,11 +217,13 @@ main {
   font-size: 15px;
   font-weight: bold;
 }
+
 #btn_index:hover {
   transition: 0.3s;
   background-color: #6cb0cd;
   color: #fff;
 }
+
 /*FIM Texto do centro*/
 
 /*---------------Sobre Nós------------------*/
@@ -232,12 +238,25 @@ main {
   font-weight: 400;
   font-display: swap;
   background: rgb(237, 245, 248);
-  background: linear-gradient(
-    45deg,
-    rgba(237, 245, 248, 1) 0%,
-    rgba(252, 252, 252, 1) 38%,
-    rgba(231, 231, 231, 1) 63%
-  );
+  background: linear-gradient(45deg,
+      rgba(237, 245, 248, 1) 0%,
+      rgba(252, 252, 252, 1) 38%,
+      rgba(231, 231, 231, 1) 63%);
+}
+
+#about-1 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: rgb(56, 56, 56);
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  background: rgb(237, 245, 248);
+  background: linear-gradient(45deg,
+      rgba(237, 245, 248, 1) 0%,
+      rgba(252, 252, 252, 1) 38%,
+      rgba(231, 231, 231, 1) 63%);
 }
 
 .about-content {
@@ -256,6 +275,7 @@ main {
   margin-right: auto;
   margin-left: auto;
 }
+
 .row {
   display: -ms-flexbox;
   display: flex;
@@ -264,9 +284,11 @@ main {
   margin-right: -15px;
   margin-left: -15px;
 }
+
 .row {
   margin: initial !important;
 }
+
 .col-md-6 {
   position: static;
   width: 40vw;
@@ -274,11 +296,13 @@ main {
   padding-right: 15px;
   padding-left: 15px;
 }
+
 .col-md-6 {
   -ms-flex: 0 0 50%;
   flex: 0 0 50%;
   max-width: 50%;
 }
+
 .col-md-6-image {
   margin-top: -27.2%;
   margin-left: 50%;
@@ -288,21 +312,25 @@ main {
   padding-right: 15px;
   padding-left: 15px;
 }
+
 .col-md-6-image {
   -ms-flex: 0 0 50%;
   flex: 0 0 50%;
   width: 100;
 }
+
 img {
   vertical-align: middle;
   border-style: none;
 }
+
 .img-fluid {
   max-width: 85%;
   height: auto;
   align-items: center;
   margin-left: 15%;
 }
+
 img {
   vertical-align: middle;
   border-style: none;
@@ -333,6 +361,7 @@ img {
   font-weight: 400;
   font-display: swap;
 }
+
 #services h1::after {
   content: "";
   background: #efefef;
@@ -383,21 +412,26 @@ img {
   margin-right: -15px;
   margin-left: -15px;
 }
+
 .services {
   margin-top: 40px;
 }
+
 .row2 {
   margin-left: 10000px;
   margin: initial !important;
 }
+
 .text-center {
   text-align: center !important;
 }
+
 .col-md-3 {
   -ms-flex: 0 0 22%;
   flex: 0 0 22%;
   max-width: 22%;
 }
+
 .col-md-3 {
   position: static;
   width: 80vh;
@@ -413,17 +447,16 @@ footer {
   width: 100%;
   padding: 50px 0px;
   height: auto;
-  background: linear-gradient(
-    265deg,
-    rgba(98, 182, 211, 1) 0%,
-    rgba(44, 120, 153, 1) 48%,
-    rgba(9, 80, 111, 1) 100%
-  );
+  background: linear-gradient(265deg,
+      rgba(98, 182, 211, 1) 0%,
+      rgba(44, 120, 153, 1) 48%,
+      rgba(9, 80, 111, 1) 100%);
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   font-family: 'Montserrat';
 }
+
 .footer_container {
   width: 100%;
   display: flex;
@@ -434,15 +467,18 @@ footer {
 .footer_sobrenos {
   width: 40%;
 }
+
 .footer_sobrenos h2 {
   border-bottom: 2px solid #000000;
   margin-bottom: 10px;
   font-weight: 300;
 }
+
 .sci li {
   margin-left: 0px;
 }
-.sci li a i{
+
+.sci li a i {
   font-size: xx-large;
   padding: 5px;
   border-radius: 5px;
@@ -452,35 +488,43 @@ footer {
 .footer_links {
   width: 15%;
 }
+
 .footer_links h2 {
   border-bottom: 2px solid #000000;
   margin-bottom: 10px;
   font-weight: 300;
 }
-.footer_links ul{
+
+.footer_links ul {
   display: flex;
   flex-direction: column;
 }
+
 .footer_links ul li {
   margin: 5px;
 }
+
 .footer_contato {
   width: 25%;
 }
+
 .footer_contato h2 {
   border-bottom: 2px solid #000000;
   margin-bottom: 10px;
   font-weight: 300;
 }
+
 .footer_contato ul {
   display: flex;
   flex-direction: column;
 }
+
 .footer_contato ul li {
   display: flex;
   align-items: center;
   margin-top: 10px;
 }
+
 .footer_contato ul li i {
   margin-right: 10px;
 }
@@ -492,7 +536,8 @@ footer {
     align-items: flex-start;
     gap: 50px;
   }
-  .footer_container > * {
+
+  .footer_container>* {
     width: 100%;
   }
 }
@@ -527,6 +572,7 @@ footer {
     font-weight: 400;
     font-display: swap;
   }
+
   #services h1::after {
     content: "";
     background: #efefef;
@@ -577,21 +623,26 @@ footer {
     margin-right: -15px;
     margin-left: -15px;
   }
+
   .services {
     margin-top: 40px;
   }
+
   .row2 {
     margin-left: 10000px;
     margin: initial !important;
   }
+
   .text-center {
     text-align: center !important;
   }
+
   .col-md-3 {
     -ms-flex: 0 0 90%;
     flex: 0 0 90%;
     max-width: 90%;
   }
+
   .col-md-3 {
     position: static;
     width: 100vh;
@@ -602,6 +653,7 @@ footer {
   #col-image {
     display: block;
   }
+
   #about {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -612,12 +664,10 @@ footer {
     font-weight: 400;
     font-display: swap;
     background: rgb(237, 245, 248);
-    background: linear-gradient(
-      45deg,
-      rgba(237, 245, 248, 1) 0%,
-      rgba(252, 252, 252, 1) 38%,
-      rgba(231, 231, 231, 1) 63%
-    );
+    background: linear-gradient(45deg,
+        rgba(237, 245, 248, 1) 0%,
+        rgba(252, 252, 252, 1) 38%,
+        rgba(231, 231, 231, 1) 63%);
   }
 
   .about-content {
@@ -638,6 +688,7 @@ footer {
     margin-right: auto;
     margin-left: auto;
   }
+
   .row {
     display: -ms-flexbox;
     display: flex;
@@ -646,9 +697,11 @@ footer {
     margin-right: -15px;
     margin-left: -15px;
   }
+
   .row {
     margin: initial !important;
   }
+
   .col-md-6 {
     position: static;
     width: 40vw;
@@ -656,11 +709,13 @@ footer {
     padding-right: 15px;
     padding-left: 15px;
   }
+
   .col-md-6 {
     -ms-flex: 0 0 60%;
     flex: 0 0 60%;
     max-width: 60%;
   }
+
   .col-md-6-image {
     margin-top: -15%;
     margin-left: -32%;
@@ -670,25 +725,30 @@ footer {
     padding-right: 15px;
     padding-left: 15px;
   }
+
   .col-md-6-image {
     -ms-flex: 0 0 50vh;
     flex: 0 0 50vh;
     width: 50vw;
   }
+
   img {
     vertical-align: middle;
     border-style: none;
   }
+
   .img-fluid {
     max-width: 85%;
     height: auto;
     align-items: center;
     margin-left: 15%;
   }
+
   img {
     vertical-align: middle;
     border-style: none;
   }
+
   .texto-sobre {
     position: static;
     margin-top: -50vh;
@@ -723,6 +783,7 @@ footer {
     font-size: 15px;
     font-weight: bold;
   }
+
   #btn_index:hover {
     transition: 0.3s;
     background-color: #6cb0cd;
@@ -739,28 +800,30 @@ footer {
   #seps {
     display: none;
   }
+
   body {
     overflow-x: hidden;
   }
+
   .logo {
     margin-top: -1vh;
   }
+
   .logo img {
     width: 25vh;
     margin-left: -16vh;
   }
+
   .nav-bar {
     position: fixed;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     background: rgb(9, 80, 111);
-    background: linear-gradient(
-      265deg,
-      rgba(9, 80, 111, 1) 0%,
-      rgba(44, 120, 153, 1) 48%,
-      rgba(98, 182, 211, 1) 100%
-    );
+    background: linear-gradient(265deg,
+        rgba(9, 80, 111, 1) 0%,
+        rgba(44, 120, 153, 1) 48%,
+        rgba(98, 182, 211, 1) 100%);
     height: 10vh;
     width: 100vw;
     margin-top: -8.5vh;
@@ -780,10 +843,12 @@ footer {
     transform: translateX(100%);
     transition: transform 0.3s ease-in;
   }
+
   .nav-list li {
     margin-left: 0;
     opacity: 0;
   }
+
   .mobile-menu {
     display: block;
     margin-left: 80vw;
@@ -800,6 +865,7 @@ footer {
     opacity: 0;
     transform: translateX(50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
