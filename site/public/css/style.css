@@ -181,7 +181,7 @@ main {
 } */
 
 .div-class-img {
-  background: url("../assets/img/home.png") no-repeat center center;
+  background: url("home.png") no-repeat center center;
   background-size: cover;
   height: 84vh;
   margin-top: 14vh;
