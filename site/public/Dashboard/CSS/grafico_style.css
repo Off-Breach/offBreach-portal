@@ -169,8 +169,8 @@
     background-color: white;
     position: fixed;
     border-radius: 10px;
-    
-
+    justify-content: center;
+    display: flex;
 }
 
 .ram{
@@ -180,7 +180,8 @@
     background-color: white;
     position: fixed;
     border-radius: 10px;
-    
+    justify-content: center;
+    display: flex;
 
 }
 
@@ -191,7 +192,8 @@
     background-color: white;
     position: fixed;
     border-radius: 10px;
-    
+    justify-content: center;
+    display: flex;
 
 }
 
