@@ -1,0 +1,257 @@
+<!-- Coding by CodingLab | www.codinglabweb.com -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="../CSS/grafico_style.css">
+    <link rel="stylesheet" href="../CSS/navbar_style.css">
+
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Dashboard Sidebar Menu</title>
+</head>
+
+<body>
+    <nav class="sidebar ">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="../../assets/img/Logos/OFFBREACH.icon.png" alt="">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">Bem Vindo</span>
+                    <span class="profession">User</span>
+                </div>
+            </div>
+
+            
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="inicio.html">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Início</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
+                            <span class="text nav-text">Gráficos</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="cadastros.html">
+                            <i class='bx bx-user icon'></i>
+                            <span class="text nav-text">Usuários</span>
+
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="alerta.html">
+                            <i class='bx bx-error icon'></i>
+                            <span class="text nav-text">Alertas</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="#">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Sair</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+
+            </div>
+        </div>
+
+    </nav>
+
+    <section class="home">
+        <div class="container">
+            <div class="botoes">
+                <button class="button-28" role="button">Servidor 1</button>
+                <button class="button-28" role="button">Servidor 2</button>
+                <button class="button-28" role="button">Servidor 3</button>
+                <button class="button-28" role="button">Servidor 4</button>
+                <button class="button-28" role="button">Servidor 5</button>
+            </div>
+            <div class="div-grafico">
+                <div class="div-fundo">
+                    <!-- <p> Graficos de temperatura e umidade</p> -->
+                    <div class="Grafico1">
+                        <canvas id="MeuGrafico1">
+                    </div>
+                </div>
+            </div>
+            <div class="alerta">
+                <div class="cpu">
+                    <p>CPU</p>
+                </div>
+                <div class="ram">
+                    <p>RAM</p>
+                </div>
+                <div class="disco">
+                    <p>Disco</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <script src="../JS/script.js"></script>
+    <script>
+
+
+
+        const labels = [
+
+            '10',
+
+            '20',
+
+            '30',
+
+            '40',
+
+            '50',
+
+            '60',
+
+            '70',
+
+            '80',
+
+            '90',
+
+            '100',
+
+        ];
+        const data = {
+
+            labels: labels,
+
+            datasets: [{
+
+                label: 'CPU',
+
+                backgroundColor: '#09506f',
+
+                borderColor: '#09506f',
+
+                data: [0, 40, 75, 86, 90,  100, 80, 55, 33, 22],
+
+            },
+
+
+
+            {
+
+                label: 'RAM',
+
+                backgroundColor: '#2c7899',
+
+                borderColor: '#2c7899',
+
+                data: [0, 25, 44, 23, 15,  40, 66, 55, 12, 22],
+
+            },
+            {
+
+                label: 'Disco',
+
+                backgroundColor: '#62b6d3',
+
+                borderColor: '#62b6d3',
+
+                data: [0, 90, 65, 98, 55,  80, 60, 12, 99, 30],
+
+            }]
+
+        };
+        const plugin = {
+
+            id: 'custom_canvas_background_color',
+
+            beforeDraw: (chart) => {
+
+                const ctx = chart.canvas.getContext('2d');
+
+                ctx.save();
+
+                ctx.globalCompositeOperation = 'destination-over';
+
+                ctx.fillStyle = '#FFFFFF';
+
+                ctx.fillRect(0, 0, chart.width, chart.height);
+
+                ctx.restore();
+
+            }
+
+        };
+        const config = {
+
+            type: 'line',
+
+            data: data,
+
+            options: {},
+
+            plugins: [plugin]
+
+        };
+    </script>
+
+
+
+    <script>
+
+
+
+        const MeuGrafico1 = new Chart(
+
+            document.getElementById('MeuGrafico1'),
+
+            config
+
+        );
+
+    </script>
+
+
+</body>
+
+</html>
