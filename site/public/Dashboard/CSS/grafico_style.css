@@ -18,19 +18,19 @@
 .button-28 {
   appearance: none;
   background-color: transparent;
-  border: 2px solid #09506f;
+  border: 2px solid #1c6e917c;
   border-radius: 15px;
   box-sizing: border-box;
-  background-color: #09506f;
+  background-color: #1e7ca4;
   cursor: pointer;
   color: #FFF;
   display: inline-block;
   font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   line-height: normal;
   margin: 0;
-  height: 55%;
+  height: 45%;
   min-width: 0;
   outline: none;
   padding: 16px 24px;
@@ -44,7 +44,7 @@
   touch-action: manipulation;
   width: 18%;
   will-change: transform;
-  box-shadow: 0 0 1em #09506f;
+  
 }
 
 .button-28:disabled {
@@ -118,14 +118,14 @@
 } */
 
 .Grafico1 {
-
-    margin-top: 33px;
+    
+    
 
     font-family: 'Work Sans', sans-serif;
 
     color: grey;
 
-    width: 57.5vw;
+    width: 45vw;
 
     height: 65vh;
 
@@ -197,7 +197,51 @@
 
 }
 
+#servidor{
+    
+    width: 45vw;
+    height: 15vh;
+    border-radius: 10px;
+    margin-top: -75vh;
+    margin-left: 20vw;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
 
 
+
+#grafico{
+    background-color: white;
+    height: 60vh;
+    width: 45vw;
+    margin-left: 20vw;
+    margin-top: 25vh;
+    border-radius: 10px; 
+    padding-top: 10vh; 
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    
+
+}
+
+#kpi{
+    background-color: papayawhip;
+    height: 75vh;
+    width: 29vw;
+    margin-left: 68vw;
+    margin-top: -75vh;
+    border-radius: 10px;
+}
+
+.titulo_grafico{
+    margin-top: -5vh;
+    padding-bottom: 4vh;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 25px;
+    font-weight: bold;
+}

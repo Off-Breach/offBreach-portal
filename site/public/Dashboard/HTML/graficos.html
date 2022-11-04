@@ -1,4 +1,3 @@
-<!-- Coding by CodingLab | www.codinglabweb.com -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="../CSS/grafico_style.css">
-    <link rel="stylesheet" href="../CSS/navbar_style.css">
+    <link rel="stylesheet" href="../CSS/style.css">
 
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
@@ -33,7 +31,7 @@
                 </div>
             </div>
 
-            
+
         </header>
 
         <div class="menu-bar">
@@ -41,7 +39,7 @@
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="inicio.html">
+                        <a href="#">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Início</span>
                         </a>
@@ -55,15 +53,14 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="cadastros.html">
+                        <a href="#">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">Usuários</span>
-
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="alerta.html">
+                        <a href="#">
                             <i class='bx bx-error icon'></i>
                             <span class="text nav-text">Alertas</span>
                         </a>
@@ -97,6 +94,151 @@
 
     </nav>
 
+
+    <div id="grafico">
+        <p class="titulo_grafico">Estado dos componentes</p>
+        <div class="Grafico1">
+            <canvas id="MeuGrafico1">
+        </div>
+    
+    </div>
+
+    </div>
+
+    <div id="kpi"></div>
+    <div id="servidor">
+
+        <button class="button-28" role="button">Servidor 1</button>
+        <button class="button-28" role="button">Servidor 2</button>
+        <button class="button-28" role="button">Servidor 3</button>
+        <button class="button-28" role="button">Servidor 4</button>
+        <button class="button-28" role="button">Servidor 5</button>
+
+    </div>
+    <script src="../JS/script.js"></script>
+    <script>
+
+
+
+        const labels = [
+
+            '10',
+
+            '20',
+
+            '30',
+
+            '40',
+
+            '50',
+
+            '60',
+
+            '70',
+
+            '80',
+
+            '90',
+
+            '100',
+
+        ];
+        const data = {
+
+            labels: labels,
+
+            datasets: [{
+
+                label: 'CPU',
+
+                backgroundColor: '#09506f',
+
+                borderColor: '#09506f',
+
+                data: [0, 40, 75, 86, 90, 100, 80, 55, 33, 22],
+
+            },
+
+
+
+            {
+
+                label: 'RAM',
+
+                backgroundColor: '#2c7899',
+
+                borderColor: '#2c7899',
+
+                data: [0, 25, 44, 23, 15, 40, 66, 55, 12, 22],
+
+            },
+            {
+
+                label: 'Disco',
+
+                backgroundColor: '#62b6d3',
+
+                borderColor: '#62b6d3',
+
+                data: [0, 90, 65, 98, 55, 80, 60, 12, 99, 30],
+
+            }]
+
+        };
+        const plugin = {
+
+            id: 'custom_canvas_background_color',
+
+            beforeDraw: (chart) => {
+
+                const ctx = chart.canvas.getContext('2d');
+
+                ctx.save();
+
+                ctx.globalCompositeOperation = 'destination-over';
+
+                ctx.fillStyle = '#FFFFFF';
+
+                ctx.fillRect(0, 0, chart.width, chart.height);
+
+                ctx.restore();
+
+            }
+
+        };
+        const config = {
+
+            type: 'line',
+
+            data: data,
+
+            options: {},
+
+            plugins: [plugin]
+
+        };
+    </script>
+
+
+
+    <script>
+
+
+
+        const MeuGrafico1 = new Chart(
+
+            document.getElementById('MeuGrafico1'),
+
+            config
+
+        );
+
+    </script>
+
+
+
+
+    <!-- 
     <section class="home">
         <div class="container">
             <div class="botoes">
@@ -107,23 +249,17 @@
                 <button class="button-28" role="button">Servidor 5</button>
             </div>
             <div class="div-grafico">
-                <div class="div-fundo">
-                    <!-- <p> Graficos de temperatura e umidade</p> -->
-                    <div class="Grafico1">
+                <div class="div-fundo"> -->
+    <!-- <p> Graficos de temperatura e umidade</p> -->
+    <!-- <div class="Grafico1">
                         <canvas id="MeuGrafico1">
                     </div>
                 </div>
             </div>
             <div class="alerta">
-                <div class="cpu">
-                    <p>CPU</p>
-                </div>
-                <div class="ram">
-                    <p>RAM</p>
-                </div>
-                <div class="disco">
-                    <p>Disco</p>
-                </div>
+                <div class="cpu"></div>
+                <div class="ram"></div>
+                <div class="disco"></div>
             </div>
 
         </div>
@@ -249,8 +385,7 @@
 
         );
 
-    </script>
-
+    </script> -->
 
 </body>
 
