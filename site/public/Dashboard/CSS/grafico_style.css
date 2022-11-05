@@ -143,8 +143,6 @@
 
     position: static;
 
-    
-
 }
 
 .alerta{
@@ -252,7 +250,20 @@
     background-color: goldenrod;
     width: 25vw;
     height: 40vh;
-    
-        
     border-radius: 10px;
+    display: flex;
+    flex-direction: row;
 }
+#MeuGrafico2{
+    height: 8vh;
+    width: 8vw;
+}
+#MeuGrafico3{
+    height: 8vh;
+    width: 8vw;
+}
+#MeuGrafico4{
+    height: 8vh;
+    width: 8vw;
+}
+        
