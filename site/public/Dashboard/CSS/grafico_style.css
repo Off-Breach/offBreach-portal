@@ -236,6 +236,8 @@
     margin-left: 68vw;
     margin-top: -75vh;
     border-radius: 10px;
+    align-items: center;
+    padding: 2vw;
 }
 
 .titulo_grafico{
@@ -244,4 +246,13 @@
     font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     font-size: 25px;
     font-weight: bold;
+}
+
+#donut{
+    background-color: goldenrod;
+    width: 25vw;
+    height: 40vh;
+    
+        
+    border-radius: 10px;
 }

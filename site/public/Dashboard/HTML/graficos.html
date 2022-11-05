@@ -10,6 +10,8 @@
 
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/grafico_style.css">
+    <link rel="stylesheet" href="../CSS/navbar_style.css">
 
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
@@ -100,12 +102,14 @@
         <div class="Grafico1">
             <canvas id="MeuGrafico1">
         </div>
-    
-    </div>
 
     </div>
 
-    <div id="kpi"></div>
+    </div>
+
+    <div id="kpi">
+        <div id="donut"></div>
+    </div>
     <div id="servidor">
 
         <button class="button-28" role="button">Servidor 1</button>
@@ -184,7 +188,24 @@
 
             }]
 
+
+
         };
+
+        // const DATA_COUNT = 5;
+        // const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
+
+        // const datas = {
+        //     labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+        //     datasets: [
+        //         {
+        //             label: 'Dataset 1',
+        //             data: Utils.numbers(NUMBER_CFG),
+        //             backgroundColor: Object.values(Utils.CHART_COLORS),
+        //         }
+        //     ]
+        // };
+
         const plugin = {
 
             id: 'custom_canvas_background_color',
@@ -215,8 +236,24 @@
             options: {},
 
             plugins: [plugin]
-
         };
+
+        // const configs = {
+            
+        //     type: 'doughnut',
+        //     data: datas,
+        //     options: {
+        //         plugins: {
+        //             legend: {
+        //                 position: 'top',
+        //             },
+        //             title: {
+        //                 display: true,
+        //                 text: 'Chart.js Doughnut Chart'
+        //             }
+        //         }
+        //     },
+        // };
     </script>
 
 
