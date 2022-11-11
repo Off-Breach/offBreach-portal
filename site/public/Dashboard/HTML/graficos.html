@@ -114,9 +114,38 @@
             </canvas>
             <canvas id="MeuGrafico4">
             </canvas>
+
         </div>
-        <canvas id="MeuGrafico3">
+        <p id="v_cpu">10%</p>
+        <p id="v_ram">20%</p>
+        <p id="v_disco">12%</p>
+
+        <p id="txt_cpu">CPU</p>
+        <p id="txt_ram">RAM</p>
+        <p id="txt_disco">DISCO</p>
+
+        <div id="alerts_analytics">
+            <div id="alerta1">
+
+                <img src="./../../assets/img/Imagens/verde.png">
+            </div>
+
+            <div id="alerta2">
+
+                <img src="./../../assets/img/Imagens/marelo.png">
+            </div>
+
+            <div id="alerta3">
+
+                <img src="./../../assets/img/Imagens/vermelhor.png">
+            </div>
+
+        </div>
+        <p id="txta_cpu">CPU</p>
+        <p id="txta_ram">RAM</p>
+        <p id="txta_disco">DISCO</p>
     </div>
+
     <div id="servidor">
 
         <button class="button-28" role="button">Servidor 1</button>
@@ -126,6 +155,8 @@
         <button class="button-28" role="button">Servidor 5</button>
 
     </div>
+
+
     <script src="../JS/script.js"></script>
 
     <script>
@@ -254,14 +285,13 @@
 
                 datasets: [{
                     label: '# of Tomatoes',
-                    data: [20, 80,],
+                    data: [20, 80],
                     backgroundColor: [
-                        'rgba(255, 255, 255)',
-
-                        'rgba(75, 192, 192)'
+                        '#FFFF',
+                        '#62b6d3'
                     ],
                     borderColor: [
-                        'rgba(75, 192, 192)'
+                        '#62b6d3'
                     ],
                     borderWidth: 1
                 }]
@@ -285,7 +315,7 @@
                     backgroundColor: [
                         'rgba(255, 255, 255)',
 
-                        'rgba(75, 192, 192)'
+                        '#62b6d3'
                     ],
                     borderColor: [
                         'rgba(75, 192, 192)'
@@ -312,10 +342,10 @@
                     backgroundColor: [
                         'rgba(255, 255, 255)',
 
-                        'rgba(75, 192, 192)'
+                        '#62b6d3'
                     ],
                     borderColor: [
-                        'rgba(75, 192, 192)'
+                        '#62b6d3'
                     ],
                     borderWidth: 1
                 }]
@@ -327,6 +357,7 @@
             }
         });
     </script>
+
 </body>
 
 </html>
