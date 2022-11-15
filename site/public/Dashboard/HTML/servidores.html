@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="../CSS/cadastro_style.css">
+    <link rel="stylesheet" href="../CSS/servidores.css">
     <link rel="stylesheet" href="../CSS/navbar_style.css">
-    <link rel="stylesheet" href="../CSS/modal.css">
+    <link rel="stylesheet" href="../CSS/modal_server.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
@@ -97,7 +97,7 @@
     <div class="table-wrapper" id="tabela">
         
         <div>
-            <h2>Usuários</h2>
+            <h2>Servidores</h2>
         </div>
         <div>
             <button class="button-28" role="button" type="button" id="button"  data-toggle="modal" data-target="#exampleModal" onclick="btn()">Cadastrar</button>
@@ -106,20 +106,29 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Acesso</th>
+                <th>HostName</th>
+                <th>Sistema Operacional</th>
+                <th>Situação</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td>012355</td>
-                <td>Larissa Dantas</td>
-                <td>Laridantas@email.com</td>
+                <td>Clinica-3306</td>
+                <td>Windows</td>
                 <td>
-                    <button class="btnLapis" disabled onclick="btn_lapis()"> <i class='bx bx-edit' style='color:#ffffff' ></i> </button>
-                    <button class="btnLixo" disabled onclick="btn_lixo()"> <i class='bx bxs-trash' style='color:#ffffff'  ></i> </button>
-                    
+                    <div id="ativo">Ativo</div>
+                    <div id="inativo" style="display: none;">Inativo</div>                
+                </td>
+                
+            </tr>
+            <tr>
+                <td>999999</td>
+                <td>Clinica-3306</td>
+                <td>Linux</td>
+                <td>
+                    <div id="ativo" style="display: none;">Ativo</div>
+                    <div id="inativo">Inativo</div>                
                 </td>
                 
             </tr>
@@ -135,20 +144,17 @@
           <div class="modal-content">
             <div class="modal-body">
               <div class="column" id="main">
-                <h1>Cadastro de funcinarios</h1>
+                <h1>Cadastro de Servidor</h1>
                 <form>
                   <div class="inputs">
                     <label for="exampleInputName"></label>
-                    <input type="name" class="inputs" id="exampleInputName" placeholder="Nome">
+                    <input type="name" class="inputs" id="exampleInputName" placeholder="HostName">
                   </div>
                   <div class="inputs">
                     <label for="exampleInputEmail1"></label>
-                    <input type="email" class="inputs" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail">
+                    <input type="email" class="inputs" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Sistema Operacional">
                   </div>
-                  <div class="inputs">
-                    <label for="exampleInputPassword1"></label>
-                    <input type="password" class="inputs" id="exampleInputPassword1" placeholder="Senha">
-                  </div>
+                  
                   <button type="submit" class="btn btn-primary">Cadastrar</button>
                   <button type="submit" class="btn btn-primary2">Cancelar</button>
                 </form>
@@ -182,3 +188,7 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/popper.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js'></script>
+
+<script>
+
+</script>
