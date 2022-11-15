@@ -13,7 +13,7 @@
 
  function entrar() {
    var emailVar = email_input.value;
-   var senhaVar = senha_input.value;
+   var senhaVar = senha_inputet.value;
 
    console.log("FORM LOGIN: ", emailVar);
    console.log("FORM SENHA: ", senhaVar);
@@ -55,7 +55,7 @@
          sessionStorage.ID_USUARIO = json.id;
 
          setTimeout(function () {
-           window.location = "Dashboard/Dashboard.html";
+           window.location = "../Dashboard/HTML/inicio.html";
          }, 1000); // apenas para exibir o loading
 
        });
