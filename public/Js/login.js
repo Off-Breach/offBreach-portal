@@ -13,7 +13,7 @@
 
  function entrar() {
    var emailVar = email_input.value;
-   var senhaVar = senha_inputet.value;
+   var senhaVar = senha_input.value;
 
    console.log("FORM LOGIN: ", emailVar);
    console.log("FORM SENHA: ", senhaVar);
@@ -51,11 +51,11 @@
          console.log(JSON.stringify(json));
 
          sessionStorage.EMAIL_USUARIO = json.email;
-         sessionStorage.NOME_USUARIO = json.nomeFuncionario;
-         sessionStorage.ID_USUARIO = json.idFuncionario;
+         sessionStorage.NOME_USUARIO = json.nome;
+         sessionStorage.ID_USUARIO = json.id;
 
          setTimeout(function () {
-           window.location = "../Dashboard/HTML/inicio.html";
+           window.location = "Dashboard/Dashboard.html";
          }, 1000); // apenas para exibir o loading
 
        });

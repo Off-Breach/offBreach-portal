@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./css/login.css" />
-  <link rel="icon" type="imagem/png" href="./assets/img/Logos/OFFBREACH.icon.png" />
+  <link rel="stylesheet" href="../css/login.css" />
+  <link rel="icon" type="imagem/png" href="../assets/img/Logos/OFFBREACH.icon.png" />
   <title>OffBreach</title>
 </head>
 
@@ -18,7 +18,7 @@
         <div class="login-cadastro">
           <form action="#" class="formularioLogin">
             <a href="./index.html">
-              <img src="./assets/img/Logos/logo-offBreach.png" alt="" class="logoLogin">
+              <img src="../assets/img/Logos/logo-offBreach.png" alt="" class="logoLogin">
             </a>
             <h2 class="title"></h2>
             <!-- Div do input de usuario no Login-->
@@ -29,15 +29,15 @@
             <!-- Div do input da senha no Login-->
             <div class="divInput">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Senha" name="senha" id="senha_inputet">
+              <input type="password" placeholder="Senha" name="senha" id="senha_input">
             </div>
-            <button type="button" value="Login" class="btn solid" onclick="entrar()">LOGIN</a></button>
+            <button type="button" value="Login" class="btn solid" onclick="entrar()">LOGIN</button>
           </form>
 
           <!-- Tela de cadastro-->
           <form action="#" id="cadastro" class="formularioCadastro">
             <a href="./index.html">
-              <img src="./assets/img/Logos/logo-offBreach.png" alt="" class="logoCadastro">
+              <img src="../assets/img/Logos/logo-offBreach.png" alt="" class="logoCadastro">
             </a>
             <h2 class="title">Cadastrar</h2>
             <!-- Div do input do nome do cadastro-->
@@ -63,6 +63,9 @@
 
             <button type="button" class="btn solid" value="Cadastrar" id="senha_input"
               onclick="cadastrar()">Cadastrar</button>
+
+            <img class="loading" src="../assets/img/Logos/Loading.gif" alt="">
+
 
           </form>
         </div>
@@ -92,7 +95,7 @@
               Faça o login em nosso site para ter acesso
               a todos os serviços que disponibilizamos
             </p>
-            <button class="btn transparent" id="btnLogin" function>
+            <button class="btn transparent" id="btnLogin">
               Login
             </button>
           </div>
@@ -107,4 +110,4 @@
 
 </html>
 
-<script src="./Js/login.js"></script>
+<script src="../Js/login.js"></script>

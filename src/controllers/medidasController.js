@@ -1,7 +1,7 @@
-var recordesModel = require("../models/recordesModel");
+var medidasModel = require("../models/medidasModel");
 
 function listar(req, res) {
-  recordesModel
+  medidasModel
     .listar()
     .then(function (resultado) {
       if (resultado.length > 0) {
@@ -13,6 +13,28 @@ function listar(req, res) {
     .catch(function (erro) {
       console.log(erro);
       console.log("Houve um erro ao buscar os recordes: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function obterUltimasMedidas(req, res) {
+  var idServidor = req.params.idServidor;
+
+  medidasModel
+    .obterUltimasMedidas(idServidor)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao buscar as últimas medidas.",
+        erro.sqlMessage
+      );
       res.status(500).json(erro.sqlMessage);
     });
 }
@@ -30,8 +52,8 @@ function novoTempo(req, res) {
   } else if (tempo == undefined) {
     res.status(400).send("Seu tempo está undefined!");
   } else {
-    // Passar os valores como parâmetro e vá para recordesModel.js
-    recordesModel
+    // Passar os valores como parâmetro e vá para medidasModel.js
+    medidasModel
       .novoTempo(id, segundos, tempo)
       .then(function (resultado) {
         res.json(resultado);
@@ -52,7 +74,7 @@ function melhorTempo(req, res) {
 
   console.log(`Recuperando seu melhor tempo`);
 
-  recordesModel
+  medidasModel
     .melhorTempo(idUsuario)
     .then(function (resultado) {
       if (resultado.length > 0) {
@@ -78,9 +100,9 @@ function quizResultado(req, res) {
   if (passou == undefined) {
     res.status(400).send("Seu resultado está undefined");
   } else {
-    // Passando o resultado como parâmetro e indo para recordesModel.js
+    // Passando o resultado como parâmetro e indo para medidasModel.js
 
-    recordesModel
+    medidasModel
       .quizResultado(passou)
       .then(function (resultado) {
         res.json(resultado);
@@ -100,7 +122,7 @@ function quizPorcentagem(req, res) {
   console.log(
     "Estou no recordesController. Recuperando a porcentagem de conclusão"
   );
-  recordesModel
+  medidasModel
     .quizPorcentagem()
     .then(function (resultado) {
       if (resultado.length > 0) {
@@ -122,4 +144,5 @@ module.exports = {
   melhorTempo,
   quizResultado,
   quizPorcentagem,
+  obterUltimasMedidas,
 };

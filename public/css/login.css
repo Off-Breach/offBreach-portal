@@ -169,10 +169,6 @@ form.formularioLogin {
   cursor: pointer;
   transition: 0.5s;
 }
-.btn a{
-  text-decoration: none;
-  color: #FFF;
-}
 
 .loading {
   width: 40px;

@@ -100,9 +100,8 @@
 
     <div id="grafico">
       <p class="titulo_grafico">Estado dos componentes</p>
-      <span class="tituloAquario"></span>
       <div class="Grafico1">
-        <canvas id="MeuGrafico1"> </canvas>
+        <canvas id="MeuGrafico1"></canvas>
       </div>
     </div>
 
@@ -306,3 +305,90 @@
     </script>
   </body>
 </html>
+
+<script>
+  let proximaAtualizacao;
+
+  window.onload = obterDadosServidor();
+
+  // O gráfico é construído com três funções:
+  // 1. obterDadosServidor -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
+  // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
+  // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
+
+  // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
+  // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
+  // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
+
+  //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+  //     Para ajustar o "select", ajuste o comando sql em src/models
+
+  function obterDadosServidor(idServidor) {
+    if (proximaAtualizacao != undefined) {
+      clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/ultimas/:${idServidor}}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+            plotarGrafico(resposta, idAquario);
+          });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+  }
+
+  // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+  // Configura o gráfico (cores, tipo, etc), materializa-o na página e,
+  // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+  function plotarGrafico(resposta, idServidor) {
+    console.log("iniciando plotagem do gráfico...");
+
+    const labels = [
+      "10",
+      "20",
+      "30",
+      "40",
+      "50",
+      "60",
+      "70",
+      "80",
+      "90",
+      "100",
+    ];
+
+    let dados = {
+      labels: labels,
+      datasets: [
+        {
+          label: "CPU",
+          backgroundColor: "#09506f",
+          borderColor: "#09506f",
+          data: [],
+        },
+        {
+          label: "RAM",
+          backgroundColor: "#2c7899",
+          borderColor: "#2c7899",
+          data: [],
+        },
+        {
+          label: "Disco",
+          backgroundColor: "#62b6d3",
+          borderColor: "#62b6d3",
+          data: [],
+        },
+      ],
+    };
+  }
+</script>
