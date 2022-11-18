@@ -99,9 +99,8 @@
         <div>
             <h2>Servidores</h2>
         </div>
-        <div>
-            <button class="button-28" role="button" type="button" id="button"  data-toggle="modal" data-target="#exampleModal" onclick="btn()">Cadastrar</button>
-        </div>
+        <br>
+        <br>
         <table class="fl-table" id="tabela1">
             <thead>
             <tr>
@@ -109,6 +108,8 @@
                 <th>HostName</th>
                 <th>Sistema Operacional</th>
                 <th>Situação</th>
+                <th>Parâmetro</th>
+                <th>Acesso</th>
             </tr>
             </thead>
             <tbody>
@@ -120,6 +121,14 @@
                     <div id="ativo">Ativo</div>
                     <div id="inativo" style="display: none;">Inativo</div>                
                 </td>
+                <td>
+                    <p>90%</p>
+                </td>
+                <td>
+                    <button class="btnLapis" role="button" type="button" id="button"  data-toggle="modal" data-target="#exampleModal" onclick="btn()"> <i class='bx bx-edit' style='color:#ffffff' ></i> </button>
+                    <button class="btnLixo" disabled onclick="btn_lixo()"> <i class='bx bxs-trash' style='color:#ffffff'  ></i> </button>
+                    
+                </td>
                 
             </tr>
             <tr>
@@ -130,7 +139,15 @@
                     <div id="ativo" style="display: none;">Ativo</div>
                     <div id="inativo">Inativo</div>                
                 </td>
-                
+                <td>
+                    <p>90%</p>
+                </td>
+                <td>
+                    <button class="btnLapis" role="button" type="button" id="button"  data-toggle="modal" data-target="#exampleModal" onclick="btn()"> <i class='bx bx-edit' style='color:#ffffff' ></i> </button>
+
+                    <button class="btnLixo" disabled onclick="btn_lixo()"> <i class='bx bxs-trash' style='color:#ffffff'  ></i> </button>
+                    
+                </td>
             </tr>
             
             <tbody>
@@ -144,7 +161,7 @@
           <div class="modal-content">
             <div class="modal-body">
               <div class="column" id="main">
-                <h1>Cadastro de Servidor</h1>
+                <h1>Editar dados de Servidor</h1>
                 <form>
                   <div class="inputs">
                     <label for="exampleInputName"></label>
@@ -152,10 +169,10 @@
                   </div>
                   <div class="inputs">
                     <label for="exampleInputEmail1"></label>
-                    <input type="email" class="inputs" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Sistema Operacional">
+                    <input type="number" class="inputs" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Parametro">
                   </div>
                   
-                  <button type="submit" class="btn btn-primary">Cadastrar</button>
+                  <button type="submit" class="btn btn-primary">Salvar</button>
                   <button type="submit" class="btn btn-primary2">Cancelar</button>
                 </form>
               </div>
