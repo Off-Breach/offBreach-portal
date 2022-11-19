@@ -19,20 +19,102 @@ function listar(req, res) {
 
 function obterUltimasMedidas(req, res) {
   var idServidor = req.params.idServidor;
+  console.log(idServidor);
+
+  let respostas = [];
 
   medidasModel
-    .obterUltimasMedidas(idServidor)
-    .then(function (resultado) {
-      if (resultado.length > 0) {
-        res.status(200).json(resultado);
+    .obterUltimasMedidasCpu(idServidor)
+    .then(function (resultadoCpu) {
+      if (resultadoCpu.length > 0) {
+        respostas.push(resultadoCpu);
+        medidasModel
+          .obterUltimasMedidasRam(idServidor)
+          .then(function (resultadoRam) {
+            if (resultadoRam.length > 0) {
+              respostas.push(resultadoRam);
+              medidasModel
+                .obterUltimasMedidasDisco(idServidor)
+                .then(function (resultadoDisco) {
+                  if (resultadoDisco.length > 0) {
+                    respostas.push(resultadoDisco);
+                    res.status(200).json(respostas);
+                  } else {
+                    res.status(204).send("Nenhum dado encontrado - Disco");
+                  }
+                })
+                .catch(function (erro) {
+                  console.log(erro);
+                  console.log(
+                    "Houve um erro ao buscar as últimas medidas.",
+                    erro.sqlMessage
+                  );
+                  res.status(500).json(erro.sqlMessage);
+                });
+            } else {
+              res.status(204).send("Nenhum resultado encontrado - Ram");
+            }
+          })
+          .catch(function (erro) {
+            console.log(erro);
+            console.log(
+              "Houve um erro ao buscar as últimas medidas.",
+              erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+          });
       } else {
-        res.status(204).send("Nenhum resultado encontrado!");
+        res.status(204).send("Nenhum resultado encontrado! - Cpu");
       }
     })
     .catch(function (erro) {
       console.log(erro);
       console.log(
         "Houve um erro ao buscar as últimas medidas.",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarMedidasEmTempoReal(req, res) {
+  var idServidor = req.params.idServidor;
+  console.log(idServidor);
+
+  medidasModel
+    .buscarMedidasEmTempoReal(idServidor)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao buscar as ultimas medidas. ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function obterTodosServidoresClinica(req, res) {
+  const idClinica = req.params.idClinica;
+  medidasModel
+    .obterTodosServidoresClinica(idClinica)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum servidor encontrado");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao buscar os servidores. ",
         erro.sqlMessage
       );
       res.status(500).json(erro.sqlMessage);
@@ -145,4 +227,6 @@ module.exports = {
   quizResultado,
   quizPorcentagem,
   obterUltimasMedidas,
+  buscarMedidasEmTempoReal,
+  obterTodosServidoresClinica
 };

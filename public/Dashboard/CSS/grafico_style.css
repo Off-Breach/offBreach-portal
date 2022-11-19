@@ -254,18 +254,19 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
-#MeuGrafico2{
-    height: 8vh;
-    width: 8vw;
+#meuGrafico2{
+    height: 65% !important;
+    width: 33% !important;
 }
-#MeuGrafico3{
-    height: 8vh;
-    width: 8vw;
+#meuGrafico3{
+    height: 65% !important;
+    width: 33% !important;
 }
-#MeuGrafico4{
-    height: 8vh;
-    width: 8vw;
+#meuGrafico4{
+    height: 65% !important;
+    width: 33% !important;
 }
         
 #v_cpu{

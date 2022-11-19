@@ -19,6 +19,14 @@ router.get("/ultimas/:idServidor", function (req, res) {
   medidasController.obterUltimasMedidas(req, res);
 });
 
+router.get("/tempoReal/:idServidor", function (req, res) {
+  medidasController.buscarMedidasEmTempoReal(req, res);
+});
+
+router.get("/servidores/:idClinica", function (req, res) {
+  medidasController.obterTodosServidoresClinica(req, res);
+});
+
 router.get("/melhorTempo/:idUsuario", function (req, res) {
   medidasController.melhorTempo(req, res);
 });

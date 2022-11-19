@@ -3,9 +3,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="../CSS/style.css" />
     <link rel="stylesheet" href="../CSS/grafico_style.css" />
@@ -99,25 +96,18 @@
     </nav>
 
     <div id="grafico">
-      <p class="titulo_grafico">Estado dos componentes</p>
+      <p id="titulo_grafico" class="titulo_grafico">Estado dos componentes</p>
       <div class="Grafico1">
-        <canvas id="MeuGrafico1"></canvas>
+        <canvas id="meuGrafico1"></canvas>
       </div>
     </div>
 
     <div id="kpi">
       <div id="donut">
-        <canvas id="MeuGrafico2"> </canvas>
-        <canvas id="MeuGrafico3"> </canvas>
-        <canvas id="MeuGrafico4"> </canvas>
+        <canvas id="meuGrafico2"> </canvas>
+        <canvas id="meuGrafico3"> </canvas>
+        <canvas id="meuGrafico4"> </canvas>
       </div>
-      <p id="v_cpu">10%</p>
-      <p id="v_ram">20%</p>
-      <p id="v_disco">12%</p>
-
-      <p id="txt_cpu">CPU</p>
-      <p id="txt_ram">RAM</p>
-      <p id="txt_disco">DISCO</p>
 
       <div id="alerts_analytics">
         <div id="alerta1">
@@ -137,205 +127,51 @@
       <p id="txta_disco">DISCO</p>
     </div>
 
-    <div id="servidor">
-      <button class="button-28" role="button">Servidor 1</button>
-      <button class="button-28" role="button">Servidor 2</button>
-      <button class="button-28" role="button">Servidor 3</button>
-      <button class="button-28" role="button">Servidor 4</button>
-      <button class="button-28" role="button">Servidor 5</button>
-    </div>
-
-    <script src="../JS/script.js"></script>
-
-    <script>
-      const labels = [
-        "10",
-
-        "20",
-
-        "30",
-
-        "40",
-
-        "50",
-
-        "60",
-
-        "70",
-
-        "80",
-
-        "90",
-
-        "100",
-      ];
-      const data = {
-        labels: labels,
-
-        datasets: [
-          {
-            label: "CPU",
-
-            backgroundColor: "#09506f",
-
-            borderColor: "#09506f",
-
-            data: [0, 40, 75, 86, 90, 100, 80, 55, 33, 22],
-          },
-
-          {
-            label: "RAM",
-
-            backgroundColor: "#2c7899",
-
-            borderColor: "#2c7899",
-
-            data: [0, 25, 44, 23, 15, 40, 66, 55, 12, 22],
-          },
-          {
-            label: "Disco",
-
-            backgroundColor: "#62b6d3",
-
-            borderColor: "#62b6d3",
-
-            data: [0, 90, 65, 98, 55, 80, 60, 12, 99, 30],
-          },
-        ],
-      };
-
-      const plugin = {
-        id: "custom_canvas_background_color",
-
-        beforeDraw: (chart) => {
-          const ctx = chart.canvas.getContext("2d");
-
-          ctx.save();
-
-          ctx.globalCompositeOperation = "destination-over";
-
-          ctx.fillStyle = "#FFFFFF";
-
-          ctx.fillRect(0, 0, chart.width, chart.height);
-
-          ctx.restore();
-        },
-      };
-      const config = {
-        type: "line",
-
-        data: data,
-
-        options: {},
-
-        plugins: [plugin],
-      };
-    </script>
-
-    <script>
-      const MeuGrafico1 = new Chart(
-        document.getElementById("MeuGrafico1"),
-
-        config
-      );
-    </script>
-
-    <script>
-      var ctx = document.getElementById("MeuGrafico2");
-      var myChart = new Chart(ctx, {
-        type: "doughnut",
-        data: {
-          datasets: [
-            {
-              label: "# of Tomatoes",
-              data: [20, 80],
-              backgroundColor: ["#FFFF", "#62b6d3"],
-              borderColor: ["#62b6d3"],
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          //cutoutPercentage: 40,
-          responsive: false,
-        },
-      });
-    </script>
-    <script>
-      var ctx = document.getElementById("MeuGrafico3");
-      var myChart = new Chart(ctx, {
-        type: "doughnut",
-        data: {
-          datasets: [
-            {
-              label: "# of Tomatoes",
-              data: [20, 80],
-              backgroundColor: ["rgba(255, 255, 255)", "#62b6d3"],
-              borderColor: ["rgba(75, 192, 192)"],
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          //cutoutPercentage: 40,
-          responsive: false,
-        },
-      });
-    </script>
-    <script>
-      var ctx = document.getElementById("MeuGrafico4");
-      var myChart = new Chart(ctx, {
-        type: "doughnut",
-        data: {
-          datasets: [
-            {
-              label: "# of Tomatoes",
-              data: [20, 80],
-              backgroundColor: ["rgba(255, 255, 255)", "#62b6d3"],
-              borderColor: ["#62b6d3"],
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          //cutoutPercentage: 40,
-          responsive: false,
-        },
-      });
-    </script>
+    <div id="servidor"></div>
   </body>
 </html>
-
+<script src="../JS/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   let proximaAtualizacao;
+  window.onload = obterTodosServidoresClinica(
+    localStorage.getItem("ID_CLINICA")
+  );
 
-  window.onload = obterDadosServidor();
-
-  // O gráfico é construído com três funções:
-  // 1. obterDadosServidor -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-  // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-  // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
-
-  // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-  // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-  // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
-
-  //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-  //     Para ajustar o "select", ajuste o comando sql em src/models
+  function obterTodosServidoresClinica(idClinica) {
+    fetch(`/medidas/servidores/${idClinica}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Servidores recebidos: ${JSON.stringify(resposta)}`);
+            let divBotoesServidor = document.getElementById("servidor");
+            let tituloGrafico = document.getElementById("titulo_grafico");
+            for (let i = 0; i < resposta.length; i++) {
+              const servidor = resposta[i];
+              divBotoesServidor.innerHTML += `<button class="button-28" role="button" onclick="obterDadosServidor(${servidor.idServidor}), document.getElementById('titulo_grafico').innerHTML = 'Estado dos componentes - Servidor ${servidor.hostName}'">Servidor ${servidor.hostName}</button>`;
+            }
+            tituloGrafico.innerHTML =
+              "Estado do Servidor - " + resposta[0].hostName;
+            obterDadosServidor(resposta[0].idServidor);
+          });
+        } else {
+        }
+      })
+      .catch();
+  }
 
   function obterDadosServidor(idServidor) {
     if (proximaAtualizacao != undefined) {
       clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimas/:${idServidor}}`, { cache: "no-store" })
+    fetch(`/medidas/ultimas/${idServidor}`, { cache: "no-store" })
       .then(function (response) {
         if (response.ok) {
           response.json().then(function (resposta) {
             console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-            resposta.reverse();
 
-            plotarGrafico(resposta, idAquario);
+            plotarGrafico(resposta, idServidor);
           });
         } else {
           console.error("Nenhum dado encontrado ou erro na API");
@@ -354,21 +190,10 @@
   function plotarGrafico(resposta, idServidor) {
     console.log("iniciando plotagem do gráfico...");
 
-    const labels = [
-      "10",
-      "20",
-      "30",
-      "40",
-      "50",
-      "60",
-      "70",
-      "80",
-      "90",
-      "100",
-    ];
+    const labelsGraficoLinha = [];
 
     let dados = {
-      labels: labels,
+      labels: labelsGraficoLinha,
       datasets: [
         {
           label: "CPU",
@@ -390,5 +215,284 @@
         },
       ],
     };
+
+    for (i = 0; i < resposta.length; i++) {
+      const hardware = resposta[i];
+      hardware.reverse();
+      for (let j = 0; j < hardware.length; j++) {
+        const registro = hardware[j];
+        if (i == 0) {
+          labelsGraficoLinha.push(convertTZ(registro.dtDado));
+        }
+        dados.datasets[i].data.push(registro.uso);
+      }
+    }
+    const dadosCpu = resposta[0];
+    const dadosRam = resposta[1];
+    const dadosDisco = resposta[2];
+
+    let dadosGraficoCpu = {
+      labels: ["Uso da Cpu", ""],
+      datasets: [
+        {
+          label: "",
+          data: [
+            dadosCpu[dadosCpu.length - 1].uso,
+            100 - dadosCpu[dadosCpu.length - 1].uso,
+          ],
+          backgroundColor: ["rgb(255, 99, 132)", "rgba(54, 162, 235, 0)"],
+          borderWidth: [2, 0],
+          hoverOffset: 4,
+        },
+      ],
+    };
+    let dadosGraficoRam = {
+      labels: ["Uso da Ram", ""],
+      datasets: [
+        {
+          label: "",
+          data: [
+            dadosRam[dadosRam.length - 1].uso,
+            100 - dadosRam[dadosRam.length - 1].uso,
+          ],
+          backgroundColor: ["rgb(255,99,132)", "rgba(54, 162, 235, 0)"],
+          borderWidth: [2, 0],
+          hoverOffset: 4,
+        },
+      ],
+    };
+    let dadosGraficoDisco = {
+      labels: ["Uso do Disco", ""],
+      datasets: [
+        {
+          label: "",
+          data: [
+            dadosDisco[dadosDisco.length - 1].uso,
+            100 - dadosDisco[dadosDisco.length - 1].uso,
+          ],
+          backgroundColor: ["rgb(255,99,132)", "rgba(54, 162, 235, 0)"],
+          borderWidth: [2, 0],
+          hoverOffset: 4,
+        },
+      ],
+    };
+
+    const configGraficoCpu = {
+      type: "doughnut",
+      data: dadosGraficoCpu,
+      options: {
+        cutout: 50,
+        layout: {
+          padding: 0,
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: "white",
+              font: {
+                size: 20
+              }
+            }
+          }
+        }
+      },
+    };
+
+    const configGraficoRam = {
+      type: "doughnut",
+      data: dadosGraficoRam,
+      options: {
+        cutout: 50,
+        layout: {
+          padding: 0,
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: "white",
+              font: {
+                size: 20
+              }
+            }
+          }
+        }
+      },
+    };
+
+    const configGraficoDisco = {
+      type: "doughnut",
+      data: dadosGraficoDisco,
+      options: {
+        cutout: 50,
+        layout: {
+          padding: 0,
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: "white",
+              font: {
+                size: 20
+              }
+            }
+          }
+        }
+      },
+    };
+
+    const configGraficoLinhas = {
+      type: "line",
+      data: dados,
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            max: 100.0,
+            min: 0.0,
+          },
+        },
+      },
+    };
+    let meuGraficoStatus = [
+      Chart.getChart("meuGrafico1"),
+      Chart.getChart("meuGrafico2"),
+      Chart.getChart("meuGrafico3"),
+      Chart.getChart("meuGrafico4"),
+    ];
+    for (let i = 0; i < meuGraficoStatus.length; i++) {
+      const grafico = meuGraficoStatus[i];
+      if (grafico != undefined) {
+        grafico.destroy();
+      }
+    }
+
+    let meuGrafico1 = new Chart(
+      document.getElementById("meuGrafico1"),
+      configGraficoLinhas
+    );
+    let meuGrafico2 = new Chart(
+      document.getElementById("meuGrafico2"),
+      configGraficoCpu
+    );
+    let meuGrafico3 = new Chart(
+      document.getElementById("meuGrafico3"),
+      configGraficoRam
+    );
+    let meuGrafico4 = new Chart(
+      document.getElementById("meuGrafico4"),
+      configGraficoDisco
+    );
+
+    console.log("Chegou aqui");
+
+    setTimeout(() => {
+      atualizarGrafico(
+        idServidor,
+        dados,
+        [dadosGraficoCpu, dadosGraficoRam, dadosGraficoDisco],
+        meuGrafico1,
+        [meuGrafico2, meuGrafico3, meuGrafico4]
+      );
+    }, 10000);
+  }
+
+  // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+  // buscando a última medida inserida em tabela contendo as capturas,
+
+  // Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+  // Para ajustar o "select", ajuste o comando sql em src/models
+  function atualizarGrafico(
+    idServidor,
+    dadosGraficoLinha,
+    dadosGraficosRosca,
+    graficoLinha,
+    graficosRosca
+  ) {
+    fetch(`/medidas/tempoReal/${idServidor}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          console.log("Aqui?");
+          console.log(response);
+          response.json().then(function (novoRegistro) {
+            console.log("Ou aqui");
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            console.log(`Dados atuais do gráfico:`);
+            console.log(dadosGraficoLinha);
+
+            if (
+              convertTZ(novoRegistro[0].dtDado) ==
+              dadosGraficoLinha.labels[dadosGraficoLinha.labels.length - 1]
+            ) {
+              console.log(
+                "---------------------------------------------------------------"
+              );
+              console.log(
+                "Como não há dados novos para captura, o gráfico não atualizará."
+              );
+              console.log("Horário do novo dado capturado:");
+              console.log(novoRegistro[0].dtDado);
+              console.log("Horário do último dado capturado:");
+              console.log(
+                dadosGraficoLinha.labels[dadosGraficoLinha.labels.length - 1]
+              );
+              console.log(
+                "---------------------------------------------------------------"
+              );
+            } else {
+              // tirando e colocando valores no gráfico
+              dadosGraficoLinha.labels.shift();
+              dadosGraficoLinha.labels.push(convertTZ(novoRegistro[0].dtDado));
+              dadosGraficoLinha.datasets[0].data.shift();
+              dadosGraficoLinha.datasets[0].data.push(novoRegistro[0].usoCpu);
+              dadosGraficoLinha.datasets[1].data.shift();
+              dadosGraficoLinha.datasets[1].data.push(novoRegistro[0].usoRam);
+              dadosGraficoLinha.datasets[2].data.shift();
+              dadosGraficoLinha.datasets[2].data.push(novoRegistro[0].usoDisco);
+              dadosGraficosRosca[0].datasets[0].data[0] =
+                novoRegistro[0].usoCpu;
+              dadosGraficosRosca[1].datasets[0].data[0] =
+                novoRegistro[0].usoRam;
+              dadosGraficosRosca[2].datasets[0].data[0] =
+                novoRegistro[0].usoDisco;
+
+              graficoLinha.update();
+              graficosRosca[0].update();
+              graficosRosca[1].update();
+              graficosRosca[2].update();
+            }
+
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(
+              () =>
+                atualizarGrafico(
+                  idServidor,
+                  dadosGraficoLinha,
+                  dadosGraficosRosca,
+                  graficoLinha,
+                  graficosRosca
+                ),
+              3000
+            );
+          });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+          proximaAtualizacao = setTimeout(
+            () =>
+              atualizarGrafico(
+                idServidor,
+                dadosGraficoLinha,
+                graficoLinha,
+                graficosRosca
+              ),
+            3000
+          );
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
   }
 </script>
