@@ -11,7 +11,7 @@
 
 </head>
 
-<body onload="atualizarFeed()">
+<body >
     <nav class="sidebar ">
         <header>
             <div class="image-text">
@@ -121,7 +121,7 @@
                     <td>
                         <button class="btnLapis" id=" btn_edit" onclick="btn_edit()"> <i class='bx bx-edit' style='color:#ffffff'></i>
                         </button>
-                        <button class="btnLixo" onclick="deletar()"> <i class='bx bxs-trash' style='color:#ffffff'></i>
+                        <button class="btnLixo" onclick="deletar2()"> <i class='bx bxs-trash' style='color:#ffffff'></i>
                         </button>
 
                     </td>
@@ -182,9 +182,9 @@
 </script>
 <script>
 
-    function deletar(idAviso) {
+    function deletar2(idAviso) {
         console.log("Criar função de apagar post escolhido - ID" + idAviso);
-        fetch(`/avisos/deletar/${idAviso}`, {
+        fetch(`/avisos/deletar2/${idAviso}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -192,8 +192,8 @@
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Usuario deletado com sucesso!");
-                window.location = 'cadastros.html'
+                window.alert("Servidor deletado com sucesso!");
+                window.location = 'servidores.html'
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -253,7 +253,7 @@
                         btnlapis.setAttribute("onclick", `btn_edit()`);
 
                         btnlixo.id = "btnlixo" + publicacao.idAviso;
-                        btnlixo.setAttribute("onclick", `deletar(${publicacao.idFuncionario})`);
+                        btnlixo.setAttribute("onclick", `deletar2(${publicacao.idServidor})`);
                         
                        
 
