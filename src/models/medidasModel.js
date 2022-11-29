@@ -147,6 +147,7 @@ function buscarMedidasEmTempoReal(idServidor) {
   );
   var instrucao = `
   SELECT TOP 1
+    s.statusPerigo,
   	dc.uso AS usoCpu,
 	  CAST(dr.uso AS FLOAT) / r.qtdRAMTotal * 100 AS usoRam,
 	  dd.tempoAtividade AS usoDisco,

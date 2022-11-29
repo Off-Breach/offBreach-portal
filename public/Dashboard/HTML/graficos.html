@@ -109,8 +109,24 @@
         <canvas id="meuGrafico4"> </canvas>
       </div>
 
-      <div id="alerts_analytics">
-        
+      <div id="alerts_analytics"></div>
+
+      <div id="alerta_status">
+        <h5>Status Perigo: <span id="spanStatusPerigo"></span></h5>
+        <div id="barra_de_progresso_outer">
+          <div id="barra_de_progresso_inner"></div>
+        </div>
+        <div id="legendas_alert">
+          <div class="status seguro">
+            <span>0-60 -> 🟢Adequado</span>
+          </div>
+          <div class="status aviso">
+            <span>61-80 -> 🟡Alerta</span>
+          </div>
+          <div class="status perigo">
+            <span>81-100 -> 🔴Perigo</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -126,8 +142,10 @@
   );
 
   function adicionarStatusServidor(nome, status) {
-    let divAlerta = document.getElementById('alerts_analytics');
-    divAlerta.innerHTML += `<h5>Status do Servidor ${nome}: ${status ? '🟢Ligado': '🔴Desligado'}</h5>`
+    let divAlerta = document.getElementById("alerts_analytics");
+    divAlerta.innerHTML += `<h5>Status do Servidor ${nome}: ${
+      status ? "🟢Ligado" : "🔴Desligado"
+    }</h5>`;
   }
 
   function obterTodosServidoresClinica(idClinica) {
@@ -141,7 +159,10 @@
             for (let i = 0; i < resposta.length; i++) {
               const servidor = resposta[i];
               divBotoesServidor.innerHTML += `<button class="button-28" role="button" onclick="obterDadosServidor(${servidor.idServidor}), document.getElementById('titulo_grafico').innerHTML = 'Estado dos componentes - Servidor ${servidor.hostName}'">Servidor ${servidor.hostName}</button>`;
-              adicionarStatusServidor(servidor.hostName, servidor.isServidorAtivo)
+              adicionarStatusServidor(
+                servidor.hostName,
+                servidor.isServidorAtivo
+              );
             }
             tituloGrafico.innerHTML =
               "Estado do Servidor - " + resposta[0].hostName;
@@ -283,11 +304,11 @@
             labels: {
               color: "white",
               font: {
-                size: 20
-              }
-            }
-          }
-        }
+                size: 20,
+              },
+            },
+          },
+        },
       },
     };
 
@@ -304,11 +325,11 @@
             labels: {
               color: "white",
               font: {
-                size: 20
-              }
-            }
-          }
-        }
+                size: 20,
+              },
+            },
+          },
+        },
       },
     };
 
@@ -325,11 +346,11 @@
             labels: {
               color: "white",
               font: {
-                size: 20
-              }
-            }
-          }
-        }
+                size: 20,
+              },
+            },
+          },
+        },
       },
     };
 
@@ -448,6 +469,8 @@
               dadosGraficosRosca[2].datasets[0].data[0] =
                 novoRegistro[0].usoDisco;
 
+              alterarValorBarraDeProgressso(Math.min(200, novoRegistro[0].statusPerigo) / 2)
+
               graficoLinha.update();
               graficosRosca[0].update();
               graficosRosca[1].update();
@@ -487,5 +510,20 @@
           `Erro na obtenção dos dados p/ gráfico: ${error.message}`
         );
       });
+  }
+
+  function alterarValorBarraDeProgressso(novoValor) {
+    let barraDeProgresso = document.getElementById("barra_de_progresso_inner");
+    let novaCor;
+    if (novoValor > 80) {
+      novaCor = "red"
+    } else if (novoValor > 60) {
+      novaCor = "yellow"
+    } else {
+      novaCor = "green"
+    }
+    barraDeProgresso.style.width = novoValor + '%';
+    barraDeProgresso.style.backgroundColor = novaCor;
+    document.getElementById('spanStatusPerigo').innerHTML = novoValor
   }
 </script>
