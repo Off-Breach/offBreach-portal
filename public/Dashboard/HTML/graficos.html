@@ -110,21 +110,8 @@
       </div>
 
       <div id="alerts_analytics">
-        <div id="alerta1">
-          <img src="./../../assets/img/Imagens/verde.png" />
-        </div>
-
-        <div id="alerta2">
-          <img src="./../../assets/img/Imagens/marelo.png" />
-        </div>
-
-        <div id="alerta3">
-          <img src="./../../assets/img/Imagens/vermelhor.png" />
-        </div>
+        
       </div>
-      <p id="txta_cpu">CPU</p>
-      <p id="txta_ram">RAM</p>
-      <p id="txta_disco">DISCO</p>
     </div>
 
     <div id="servidor"></div>
@@ -138,6 +125,11 @@
     localStorage.getItem("ID_CLINICA")
   );
 
+  function adicionarStatusServidor(nome, status) {
+    let divAlerta = document.getElementById('alerts_analytics');
+    divAlerta.innerHTML += `<h5>Status do Servidor ${nome}: ${status ? '🟢Ligado': '🔴Desligado'}</h5>`
+  }
+
   function obterTodosServidoresClinica(idClinica) {
     fetch(`/medidas/servidores/${idClinica}`, { cache: "no-store" })
       .then(function (response) {
@@ -149,6 +141,7 @@
             for (let i = 0; i < resposta.length; i++) {
               const servidor = resposta[i];
               divBotoesServidor.innerHTML += `<button class="button-28" role="button" onclick="obterDadosServidor(${servidor.idServidor}), document.getElementById('titulo_grafico').innerHTML = 'Estado dos componentes - Servidor ${servidor.hostName}'">Servidor ${servidor.hostName}</button>`;
+              adicionarStatusServidor(servidor.hostName, servidor.isServidorAtivo)
             }
             tituloGrafico.innerHTML =
               "Estado do Servidor - " + resposta[0].hostName;

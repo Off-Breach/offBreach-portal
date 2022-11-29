@@ -192,7 +192,8 @@ function obterTodosServidoresClinica(idClinica) {
     SELECT
     	s.idServidor as idServidor,
     	s.popularName as hostName,
-    	sistemaOperacional as sistemaOperacional
+    	s.sistemaOperacional as sistemaOperacional,
+      s.statusLigado as isServidorAtivo 
     FROM
     	servidor AS s
     JOIN
@@ -200,7 +201,7 @@ function obterTodosServidoresClinica(idClinica) {
     ON
     	s.fkClinica = c.idClinica
     WHERE
-    	c.idClinica = 1
+    	c.idClinica = ${idClinica}
   `;
   console.log("Executando instrução SQL: \n" + instrucao);
   return database.executar(instrucao);

@@ -326,12 +326,13 @@
 }
 #alerts_analytics{
     width: 25vw;
-    height: 30vh;
+    height: 25vh;
     background-color: #2c7899;
     margin-top: 12vh;
     border-radius: 8px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: space-evenly;
     padding: 3;
 }
 #alerta1{

@@ -91,9 +91,72 @@ function cadastrar(req, res) {
   }
 }
 
+function cadastrarComResponsavel(req, res) {
+  // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+  var nome = req.body.nomeServer;
+  var email = req.body.emailServer;
+  var senha = req.body.senhaServer;
+  var idResponsavel = req.body.idResponsavel;
+  var idClinica = req.body.idClinica;
+
+  console.log();
+
+  // Faça as validações dos valores
+  if (nome == undefined) {
+    res.status(400).send("Seu nome está undefined!");
+  } else if (email == undefined) {
+    res.status(400).send("Seu email está undefined!");
+  } else if (senha == undefined) {
+    res.status(400).send("Sua senha está undefined!");
+  } else if (idResponsavel == undefined) {
+    res.status(400).send("Seu idResponsavel está undefined!");
+  } else {
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel
+      .cadastrarComResponsavel(nome, email, senha, idResponsavel, idClinica)
+      .then(function (resultado) {
+        res.json(resultado);
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao realizar o cadastro! Erro: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
+}
+
+function editar(req, res) {
+  const nome = req.body.nomeServer;
+  const email = req.body.emailServer;
+  const id = req.params.idFuncionario;
+
+  if (nome == undefined) {
+    res.status(400).send("Seu nome está undefined!");
+  } else if (email == undefined) {
+    res.status(400).send("Seu email está undefined!");
+  } else {
+    usuarioModel
+      .editar(id, nome, email)
+      .then(function (resultado) {
+        console.log(resultado);
+        res.status(200).json(resultado);
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao editar o usuário: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
+}
+
 module.exports = {
   entrar,
   cadastrar,
   listar,
   testar,
+  cadastrarComResponsavel,
+  editar
 };

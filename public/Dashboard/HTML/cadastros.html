@@ -1,184 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="../CSS/cadastro_style.css">
-    <link rel="stylesheet" href="../CSS/navbar_style.css">
-    <link rel="stylesheet" href="../CSS/modal.css">
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="../CSS/cadastro_style.css" />
+    <link rel="stylesheet" href="../CSS/navbar_style.css" />
+    <link rel="stylesheet" href="../CSS/modal.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
 
-</head>
+  <body onload="atualizarFeed(localStorage.getItem('ID_CLINICA'))">
+    <nav class="sidebar">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="../../assets/img/Logos/OFFBREACH.icon.png" alt="" />
+          </span>
 
-    <body>
-        <nav class="sidebar ">
-            <header>
-                <div class="image-text">
-                    <span class="image">
-                        <img src="../../assets/img/Logos/OFFBREACH.icon.png" alt="">
-                    </span>
-    
-                    <div class="text logo-text">
-                        <span class="name">Bem Vindo</span>
-                        <span class="profession">User</span>
-                    </div>
-                </div>
-    
-                
-            </header>
-    
-            <div class="menu-bar">
-                <div class="menu">
-    
-                    <ul class="menu-links">
-                        <li class="nav-link">
-                            <a href="inicio.html">
-                                <i class='bx bx-home-alt icon'></i>
-                                <span class="text nav-text">Início</span>
-                            </a>
-                        </li>
-    
-                        <li class="nav-link">
-                            <a href="graficos.html">
-                                <i class='bx bx-bar-chart-alt-2 icon'></i>
-                                <span class="text nav-text">Gráficos</span>
-                            </a>
-                        </li>
-    
-                        <li class="nav-link">
-                            <a href="cadastros.html">
-                                <i class='bx bx-user icon'></i>
-                                <span class="text nav-text">Usuários</span>
-                            </a>
-                        </li>
+          <div class="text logo-text">
+            <span class="name">Bem Vindo</span>
+            <span class="profession">User</span>
+          </div>
+        </div>
+      </header>
 
-                        <li class="nav-link">
-                            <a href="servidores.html">
-                                <i class='bx bx-server icon' ></i>
-                                <span class="text nav-text">Servidores</span>
-                            </a>
-                        </li>
-    
-                        <li class="nav-link">
-                            <a href="alerta.html">
-                                <i class='bx bx-error icon'></i>
-                                <span class="text nav-text">Alertas</span>
-                            </a>
-                        </li>
-    
-                    </ul>
-                </div>
-    
-                <div class="bottom-content">
-                    <li class="">
-                        <a href="#">
-                            <i class='bx bx-log-out icon'></i>
-                            <span class="text nav-text">Sair</span>
-                        </a>
-                    </li>
-    
-                    <li class="mode">
-                        <div class="sun-moon">
-                            <i class='bx bx-moon icon moon'></i>
-                            <i class='bx bx-sun icon sun'></i>
-                        </div>
-                        <span class="mode-text text">Dark mode</span>
-    
-                        <div class="toggle-switch">
-                            <span class="switch"></span>
-                        </div>
-                    </li>
-    
-                </div>
+      <div class="menu-bar">
+        <div class="menu">
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="inicio.html">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="text nav-text">Início</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="graficos.html">
+                <i class="bx bx-bar-chart-alt-2 icon"></i>
+                <span class="text nav-text">Gráficos</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="cadastros.html">
+                <i class="bx bx-user icon"></i>
+                <span class="text nav-text">Usuários</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="servidores.html">
+                <i class="bx bx-server icon"></i>
+                <span class="text nav-text">Servidores</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="alerta.html">
+                <i class="bx bx-error icon"></i>
+                <span class="text nav-text">Alertas</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bottom-content">
+          <li class="">
+            <a href="#">
+              <i class="bx bx-log-out icon"></i>
+              <span class="text nav-text">Sair</span>
+            </a>
+          </li>
+
+          <li class="mode">
+            <div class="sun-moon">
+              <i class="bx bx-moon icon moon"></i>
+              <i class="bx bx-sun icon sun"></i>
             </div>
-    
-        </nav>
-    
+            <span class="mode-text text">Dark mode</span>
+
+            <div class="toggle-switch">
+              <span class="switch"></span>
+            </div>
+          </li>
+        </div>
+      </div>
+    </nav>
+
     <div class="table-wrapper" id="tabela">
-        
-        <div>
-            <h2>Usuários</h2>
-        </div>
-        <div>
-            <button class="button-28" role="button" type="button" id="button"  data-toggle="modal" data-target="#exampleModal" onclick="btn()">Cadastrar</button>
-        </div>
-        <table class="fl-table" id="tabela1">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Acesso</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>012355</td>
-                <td>Larissa Dantas</td>
-                <td>Laridantas@email.com</td>
-                <td>
-                    <button class="btnLapis" disabled onclick="btn_lapis()"> <i class='bx bx-edit' style='color:#ffffff' ></i> </button>
-                    <button class="btnLixo" disabled onclick="btn_lixo()"> <i class='bx bxs-trash' style='color:#ffffff'  ></i> </button>
-                    
-                </td>
-                
-            </tr>
-            
-            <tbody>
-        </table>
+      <div>
+        <h2>Usuários</h2>
+      </div>
+      <div>
+        <button
+          class="button-28"
+          role="button"
+          type="button"
+          id="button"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          onclick="btn()"
+        >
+          Cadastrar
+        </button>
+      </div>
+      <table class="fl-table" id="tabela1">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Acesso</th>
+          </tr>
+        </thead>
+        <tbody id="tbl">
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+
+        <tbody></tbody>
+      </table>
     </div>
-    
+
     <!-- -------------------Modal----------------------------------->
     <div>
-    <div class="modal-fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+      <div
+        class="modal-fade"
+        id="exampleModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-body">
               <div class="column" id="main">
-                <h1>Cadastro de funcinarios</h1>
+                <h1>Cadastro de funcionarios</h1>
                 <form>
                   <div class="inputs">
                     <label for="exampleInputName"></label>
-                    <input type="name" class="inputs" id="exampleInputName" placeholder="Nome">
+                    <input
+                      type="name"
+                      class="inputs"
+                      id="inputNomeCadastro"
+                      placeholder="Nome"
+                    />
                   </div>
                   <div class="inputs">
                     <label for="exampleInputEmail1"></label>
-                    <input type="email" class="inputs" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail">
+                    <input
+                      type="email"
+                      class="inputs"
+                      id="inputEmailCadastro"
+                      aria-describedby="emailHelp"
+                      placeholder="E-mail"
+                    />
                   </div>
                   <div class="inputs">
                     <label for="exampleInputPassword1"></label>
-                    <input type="password" class="inputs" id="exampleInputPassword1" placeholder="Senha">
+                    <input
+                      type="password"
+                      class="inputs"
+                      id="inputSenhaCadastro"
+                      placeholder="Senha"
+                    />
                   </div>
-                  <button type="submit" class="btn btn-primary">Cadastrar</button>
-                  <button type="submit" class="btn btn-primary2">Cancelar</button>
+                  <button
+                    onclick="criar_usuario(localStorage.getItem('ID_FUNCIONARIO'))"
+                    class="btn btn-primary"
+                  >
+                    Cadastrar
+                  </button>
+                  <button class="btn btn-primary2">Cancelar</button>
                 </form>
               </div>
-              <div>
-                </svg>
-              </div>
+              <div></div>
               <div class="column" id="secondary">
-                <div class="sec-content">
-                  
-                </div>
+                <div class="sec-content"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </body>
 
-    </body>
-    
-
+  <div>
+    <div
+      class="modal-fade"
+      id="exampleModal2"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="column" id="main">
+              <h1>Editar cadastro de funcionarios</h1>
+              <form>
+                <div class="inputs">
+                  <label for="exampleInputName"></label>
+                  <input
+                    type="name"
+                    class="inputs"
+                    id="inputNomeEdit"
+                    placeholder="Nome"
+                  />
+                </div>
+                <div class="inputs">
+                  <label for="exampleInputEmail1"></label>
+                  <input
+                    type="email"
+                    class="inputs"
+                    id="inputEmailEdit"
+                    aria-describedby="emailHelp"
+                    placeholder="E-mail"
+                  />
+                </div>
+                <div class="inputs"></div>
+                <button id="botaoSalvarUsuarioEditado" class="btn btn-primary">
+                  Salvar
+                </button>
+                <button class="btn btn-primary2">Cancelar</button>
+              </form>
+            </div>
+            <div></div>
+            <div class="column" id="secondary">
+              <div class="sec-content"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </html>
 <script>
-   function btn(){ 
-    tabela.style.display = "none"
-    
+  function btn() {
+    tabela.style.display = "none";
+    exampleModal2.style.display = "none";
+  }
+  function btn_edit(id, nome, email) {
+    tabela.style.display = "none";
+    exampleModal2.style.display = "block";
+    console.log(id, nome, email);
+    inputNomeEdit.value = nome;
+    inputEmailEdit.value = email;
+    referenciar_id_no_botao_de_editar(id);
+  }
+</script>
+<script>
+  function referenciar_id_no_botao_de_editar(id) {
+    let botaoSalvarUsuarioEditado = document.querySelector(
+      "#botaoSalvarUsuarioEditado"
+    );
+    botaoSalvarUsuarioEditado.setAttribute("onclick", `editar_usuario(${id})`);
+  }
+
+  function editar_usuario(idFuncionario) {
+    const idUsuario = idFuncionario;
+    const novoNomeUsuario = inputNomeEdit.value;
+    const novoEmailUsuario = inputEmailEdit.value;
+
+    if (novoNomeUsuario == "" || novoEmailUsuario == "") {
+      window.alert("Preencha todos os campos antes de prosseguir");
+      return false;
     }
 
+    if (novoEmailUsuario.indexOf("@") == -1) {
+      window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
+      return false;
+    }
+
+    console.log(novoNomeUsuario);
+    console.log(novoEmailUsuario);
+
+    console.log("Funcao editar usuario - ID " + idFuncionario);
+    fetch(`/usuarios/editar/${idFuncionario}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeServer: novoNomeUsuario,
+        emailServer: novoEmailUsuario,
+      }),
+    })
+      .then(function (response) {
+        console.log("resposta: ", response);
+
+        if (response.ok) {
+          window.alert("Edição realizada com sucesso!");
+        } else {
+          throw "Houve um erro ao tentar editar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function criar_usuario(idResponsavel) {
+    const novoNomeUsuario = inputNomeCadastro.value;
+    const novoEmailUsuario = inputEmailCadastro.value;
+    const novaSenhaUsuario = inputSenhaCadastro.value;
+
+    if (
+      novoNomeUsuario == "" ||
+      novoEmailUsuario == "" ||
+      novaSenhaUsuario == ""
+    ) {
+      window.alert("Preencha todos os campos antes de prosseguir");
+      return false;
+    }
+
+    if (novoEmailUsuario.indexOf("@") == -1) {
+      window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
+      return false;
+    }
+
+    console.log(novoNomeUsuario);
+    console.log(novoEmailUsuario);
+    console.log(novaSenhaUsuario);
+
+    console.log("Funcao criar usuario - ID " + idResponsavel);
+    fetch(`/usuarios/cadastrarComResponsavel`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeServer: novoNomeUsuario,
+        emailServer: novoEmailUsuario,
+        senhaServer: novaSenhaUsuario,
+        idResponsavel: idResponsavel,
+        idClinica: localStorage.getItem("ID_CLINICA"),
+      }),
+    })
+      .then(function (response) {
+        console.log("resposta: ", response);
+
+        if (response.ok) {
+          window.alert("Cadastro realizado com sucesso!");
+          location.reload();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function deletar(idAviso) {
+    console.log("Criar função de apagar post escolhido - ID" + idAviso);
+    fetch(`/avisos/deletar/${idAviso}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (resposta) {
+        if (resposta.ok) {
+          window.alert("Usuario deletado com sucesso!");
+          window.location = "cadastros.html";
+        } else if (resposta.status == 404) {
+          window.alert("Deu 404!");
+        } else {
+          throw (
+            "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+            resposta.status
+          );
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function atualizarFeed(idFuncionario) {
+    //aguardar();
+    fetch(`/avisos/listar/${idFuncionario}`)
+      .then(function (resposta) {
+        if (resposta.ok) {
+          if (resposta.status == 204) {
+            var feed = document.getElementById("feed_container");
+            var mensagem = document.createElement("span");
+            mensagem.innerHTML = "Nenhum resultado encontrado.";
+            feed.appendChild(mensagem);
+            throw "Nenhum resultado encontrado!!";
+          }
+
+          resposta.json().then(function (resposta) {
+            console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+            var feed = document.getElementById("tbl");
+            feed.innerHTML = "";
+            for (let i = 0; i < resposta.length; i++) {
+              var publicacao = resposta[i];
+
+              var tr2 = document.createElement("tr");
+              var tdid = document.createElement("td");
+              var tdnome = document.createElement("td");
+              var tdemail = document.createElement("td");
+              var tdacesso = document.createElement("td");
+              var btnlapis = document.createElement("button");
+              var btnlixo = document.createElement("button");
+
+              tdid.innerHTML = publicacao.idFuncionario;
+              tdnome.innerHTML = publicacao.nomeFuncionario;
+              tdemail.innerHTML = publicacao.email;
+
+              btnlapis.innerHTML =
+                "<i class='bx bx-edit' style='color:#ffffff'></i>";
+              btnlixo.innerHTML =
+                "<i class='bx bxs-trash' style='color:#ffffff'></i>";
+
+              btnlapis.className = "btnLapis";
+              btnlixo.className = "btnLixo";
+
+              btnlapis.id = "btnlapis" + publicacao.idAviso;
+              btnlapis.setAttribute(
+                "onclick",
+                `btn_edit(${publicacao.idFuncionario},'${publicacao.nomeFuncionario}', '${publicacao.email}')`
+              );
+
+              btnlixo.id = "btnlixo" + publicacao.idAviso;
+              btnlixo.setAttribute(
+                "onclick",
+                `deletar(${publicacao.idFuncionario})`
+              );
+
+              tr2.appendChild(tdid);
+              tr2.appendChild(tdnome);
+              tr2.appendChild(tdemail);
+              tr2.appendChild(tdacesso);
+              tdacesso.appendChild(btnlapis);
+              tdacesso.appendChild(btnlixo);
+              feed.appendChild(tr2);
+            }
+          });
+        } else {
+          throw "Houve um erro na API!";
+        }
+      })
+      .catch(function (resposta) {
+        console.error(resposta);
+        finalizarAguardar();
+      });
+  }
 </script>
 <script src="../JS/script.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/popper.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>

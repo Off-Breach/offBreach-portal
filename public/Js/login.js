@@ -51,6 +51,7 @@ function entrar() {
           console.log(json);
           console.log(JSON.stringify(json));
 
+          localStorage.setItem("ID_FUNCIONARIO", json.idFuncionario)
           localStorage.setItem("NOME_USUARIO", json.nomeFuncionario);
           localStorage.setItem("EMAIL_USUARIO", json.email);
           localStorage.setItem("ID_CLINICA", json.idClinica);
