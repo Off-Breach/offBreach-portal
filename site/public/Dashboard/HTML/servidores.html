@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="../CSS/servidores.css" />
+    <link rel="stylesheet" href="../CSS/navbar_style.css" />
+    <link rel="stylesheet" href="../CSS/modal_server.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body
+    onload="obterTodosServidoresClinica(localStorage.getItem('ID_CLINICA'))"
+  >
+    <nav class="sidebar">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="../../assets/img/Logos/OFFBREACH.icon.png" alt="" />
+          </span>
+
+          <div class="text logo-text">
+            <span class="name">Bem Vindo</span>
+            <span class="profession">User</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="inicio.html">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="text nav-text">Início</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="graficos.html">
+                <i class="bx bx-bar-chart-alt-2 icon"></i>
+                <span class="text nav-text">Gráficos</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="cadastros.html">
+                <i class="bx bx-user icon"></i>
+                <span class="text nav-text">Usuários</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="servidores.html">
+                <i class="bx bx-server icon"></i>
+                <span class="text nav-text">Servidores</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="alerta.html">
+                <i class="bx bx-error icon"></i>
+                <span class="text nav-text">Alertas</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bottom-content">
+          <li class="">
+            <a href="#">
+              <i class="bx bx-log-out icon"></i>
+              <span class="text nav-text">Sair</span>
+            </a>
+          </li>
+
+          <li class="mode">
+            <div class="sun-moon">
+              <i class="bx bx-moon icon moon"></i>
+              <i class="bx bx-sun icon sun"></i>
+            </div>
+            <span class="mode-text text">Dark mode</span>
+
+            <div class="toggle-switch">
+              <span class="switch"></span>
+            </div>
+          </li>
+        </div>
+      </div>
+    </nav>
+
+    <div class="table-wrapper" id="tabela">
+      <div>
+        <h2>Servidores</h2>
+      </div>
+      <br />
+      <br />
+      <table class="fl-table" id="tabela1">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>HostName</th>
+            <th>Sistema Operacional</th>
+            <th>Situação</th>
+            <th>Parâmetro</th>
+            <th>Acesso</th>
+          </tr>
+        </thead>
+        <tbody id="corpoTabela"></tbody>
+      </table>
+    </div>
+
+    <!-- -------------------Modal----------------------------------->
+    <div>
+      <div
+        class="modal-fade"
+        id="exampleModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="column" id="main">
+                <h1>Editar dados de Servidor</h1>
+                <form>
+                  <div class="inputs">
+                    <label for="exampleInputName"></label>
+                    <input
+                      type="name"
+                      class="inputs"
+                      id="inputNovoHostName"
+                      placeholder="HostName"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    id="botaoSalvarServidor"
+                    class="btn btn-primary"
+                  >
+                    Salvar
+                  </button>
+                  <button type="submit" class="btn btn-primary2">
+                    Cancelar
+                  </button>
+                </form>
+              </div>
+              <div></div>
+              <div class="column" id="secondary">
+                <div class="sec-content"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  function abrirModalEditarServidor(idServidor, nomeAtual) {
+    tabela.style.display = "none";
+    exampleModal.style.display = "block";
+    document.getElementById("inputNovoHostName").value = nomeAtual;
+    document
+      .getElementById("botaoSalvarServidor")
+      .setAttribute("onclick", `editarServidor(${idServidor})`);
+  }
+
+  function obterTodosServidoresClinica(idClinica) {
+    fetch(`/medidas/servidores/${idClinica}`)
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Servidores recebidos: ${JSON.stringify(resposta)}`);
+            let tabela = document.getElementById("corpoTabela");
+            tabela.innerHTML = "";
+            for (let i = 0; i < resposta.length; i++) {
+              const servidor = resposta[i];
+              let row = document.createElement("tr");
+              let cellId = document.createElement("td");
+              let cellHostName = document.createElement("td");
+              let cellSO = document.createElement("td");
+              let cellStatus = document.createElement("td");
+              let cellSituacao = document.createElement("td");
+              let cellAcesso = document.createElement("td");
+              let btnEditar = document.createElement("button");
+              let btnDesligar = document.createElement("button");
+              let btnRemover = document.createElement("button");
+
+              cellId.innerHTML = servidor.idServidor;
+              cellHostName.innerHTML = servidor.hostName;
+              cellSO.innerHTML = servidor.sistemaOperacional;
+              cellStatus.innerHTML = servidor.isServidorAtivo
+                ? "🟢Ligado"
+                : "🔴Desligado";
+              if (servidor.statusPerigo != 300) {
+                cellSituacao.innerHTML = `
+	                ${Math.min(Number(servidor.statusPerigo / 2), 100)} ${
+                  servidor.statusPerigo / 2 > 80
+                    ? "🔴"
+                    : servidor.statusPerigo / 2 > 60
+                    ? "🟡"
+                    : "🟢"
+                }
+	                  `;
+              } else {
+                cellSituacao.innerHTML = "Desligando...";
+              }
+
+              btnEditar.innerHTML =
+                '<i class="bx bx-edit" style="color: #ffffff"></i>';
+              btnRemover.innerHTML =
+                '<i class="bx bx-trash" style="color: #ffffff"></i>';
+              btnDesligar.innerHTML =
+                '<i class="bx bx-power-off" style="color: #ffffff"></i>';
+              btnEditar.className = "btnLapis";
+              btnDesligar.className = "btnDesligar";
+              btnRemover.className = "btnLixo";
+
+              btnEditar.setAttribute(
+                "onclick",
+                `abrirModalEditarServidor(${servidor.idServidor}, '${servidor.hostName}')`
+              );
+
+              btnDesligar.setAttribute(
+                "onclick",
+                `desligarServidor(${servidor.idServidor})`
+              );
+
+              btnRemover.setAttribute(
+                "onclick",
+                `removerServidor(${servidor.idServidor})`
+              );
+
+              row.appendChild(cellId);
+              row.appendChild(cellHostName);
+              row.appendChild(cellSO);
+              row.appendChild(cellStatus);
+              row.appendChild(cellSituacao);
+              cellAcesso.appendChild(btnEditar);
+              cellAcesso.appendChild(btnDesligar);
+              cellAcesso.appendChild(btnRemover);
+              row.appendChild(cellAcesso);
+              tabela.appendChild(row);
+            }
+          });
+        } else {
+        }
+      })
+      .catch(function (error) {});
+  }
+
+  function editarServidor(idServidor) {
+    const novoHostName = document.getElementById("inputNovoHostName").value;
+    if (novoHostName == "") {
+      window.alert("Preencha todos os campos para poder editar");
+      return false;
+    }
+    console.log(novoHostName);
+
+    fetch(`/avisos/editarServidor/${idServidor}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        hostname: novoHostName,
+      }),
+    })
+      .then(function (response) {
+        console.log("resposta: ", response);
+
+        if (response.ok) {
+          window.alert("Edição realizada com sucesso!");
+        } else {
+          throw "Houve um erro ao tentar editar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function removerServidor(idServidor) {
+    fetch(`/avisos/removerServidor/${idServidor}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (resposta) {
+        if (resposta.ok) {
+          window.alert("Servidor deletado com sucesso!");
+        } else {
+          throw (
+            "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+            resposta.status
+          );
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function desligarServidor(idServidor) {
+    fetch(`/avisos/desligarServidor/${idServidor}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (resposta) {
+        if (resposta.ok) {
+          window.alert("Servidor desligado com sucesso!");
+          location.reload();
+        } else {
+          throw (
+            "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+            resposta.status
+          );
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+</script>
+<script src="../JS/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
